@@ -61,7 +61,7 @@ function FlatSecMarket() {
       try {
         console.log(`Flat.jsx: Запрос к /find_flats/secondary_markets/${uuid}`);
         const response = await axios.get(
-          `http://0.0.0.0:8000/api/find_flats/secondary_markets/${uuid}`,
+          `http://http://155.212.147.208/api/find_flats/secondary_markets/${uuid}`,
           {
             headers: {
               'Cache-Control': 'no-cache',

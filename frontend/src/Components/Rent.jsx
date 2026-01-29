@@ -77,7 +77,7 @@ function Rent() {
       try {
         console.log('Rent.jsx: Запрос к /find_flats/rents');
         const response = await axios.get(
-          'http://0.0.0.0:8000/api/find_flats/rents',
+          'http://http://155.212.147.208/api/find_flats/rents',
           {
             headers: {
               'Cache-Control': 'no-cache',

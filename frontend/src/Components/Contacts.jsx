@@ -52,7 +52,7 @@ function Contacts() {
       try {
         console.log('Contacts.jsx: Запрос к /contacts');
         const response = await axios.get(
-          'http://0.0.0.0:8000/api/contacts',
+          'http://http://155.212.147.208/api/contacts',
           {
             headers: {
               'Cache-Control': 'no-cache',

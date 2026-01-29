@@ -63,7 +63,7 @@ function FlatRent() {
       try {
         console.log(`Flat.jsx: Запрос к /find_flats/rents/${uuid}`);
         const response = await axios.get(
-          `http://0.0.0.0:8000/api/find_flats/rents/${uuid}`,
+          `http://http://155.212.147.208/api/find_flats/rents/${uuid}`,
           {
             headers: {
               'Cache-Control': 'no-cache',

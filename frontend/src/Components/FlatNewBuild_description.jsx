@@ -61,7 +61,7 @@ function FlatNewBuild() {
       try {
         console.log(`Flat.jsx: Запрос к /find_flats/news_buildings/${uuid}`);
         const response = await axios.get(
-          `http://0.0.0.0:8000/api/find_flats/news_buildings/${uuid}`,
+          `http://http://155.212.147.208/api/find_flats/news_buildings/${uuid}`,
           {
             headers: {
               'Cache-Control': 'no-cache',
@@ -106,7 +106,7 @@ function FlatNewBuild() {
       (typeof room_count === "number" || !isNaN(Number(room_count)))
     ) {
       axios.get(
-        `http://0.0.0.0:8000/api/data/images?property_type=${encodeURIComponent(property_type)}&room_count=${Number(room_count)}`
+        `http://http://155.212.147.208/api/data/images?property_type=${encodeURIComponent(property_type)}&room_count=${Number(room_count)}`
       )
       .then(resp => {
         setImageUrls(resp.data);

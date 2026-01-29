@@ -89,7 +89,7 @@ function NewBuildings() {
       try {
         console.log('SecMarket.jsx: Запрос к /find_flats/news_buildings');
         const response = await axios.get(
-          'http://0.0.0.0:8000/api/find_flats/news_buildings',
+          'http://http://155.212.147.208/api/find_flats/news_buildings',
           {
             headers: {
               'Cache-Control': 'no-cache',
