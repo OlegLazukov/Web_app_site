@@ -11,7 +11,7 @@ lerna-debug.log*
 dist
 dist-ssr
 *.local
-backend/Config.py
+backend/app/Config.py
 .env
 # Editor directories and files
 .vscode/*
@@ -22,4 +22,4 @@ backend/Config.py
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+*.sw
