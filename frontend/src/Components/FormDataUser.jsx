@@ -31,7 +31,7 @@ const FormDataUser = () => {
     const onFinish = async (values) => {
         try {
             const response = await axios.post(
-              'http://0.0.0.0:8000/user_data',
+              'http://0.0.0.0:8000/api/user_data',
               {
                 lastname_user: values.lastname_user,
                 username: values.username,

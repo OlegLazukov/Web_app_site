@@ -61,7 +61,7 @@ function FlatSecMarket() {
       try {
         console.log(`Flat.jsx: Запрос к /find_flats/secondary_markets/${uuid}`);
         const response = await axios.get(
-          `http://0.0.0.0:8000/find_flats/secondary_markets/${uuid}`,
+          `http://0.0.0.0:8000/api/find_flats/secondary_markets/${uuid}`,
           {
             headers: {
               'Cache-Control': 'no-cache',
@@ -106,7 +106,7 @@ function FlatSecMarket() {
       (typeof room_count === "number" || !isNaN(Number(room_count)))
     ) {
       axios.get(
-        `http://0.0.0.0:8000/data/images?property_type=${encodeURIComponent(property_type)}&room_count=${Number(room_count)}`
+        `http://0.0.0.0:8000/api/data/images?property_type=${encodeURIComponent(property_type)}&room_count=${Number(room_count)}`
       )
       .then(resp => {
         setImageUrls(resp.data);

@@ -41,7 +41,7 @@ function App() {
     try {
       console.log(`App.jsx: Запрос к /find_flats${query}`);
       const response = await axios.get(
-        `http://127.0.0.1:8000/find_flats${query}`,
+        `http://0.0.0.0:8000/api/find_flats${query}`,
         {
           headers: {
             'Cache-Control': 'no-cache',

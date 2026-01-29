@@ -76,7 +76,7 @@ function SecMarket() {
       try {
         console.log('SecMarket.jsx: Запрос к /find_flats/secondary_markets');
         const response = await axios.get(
-          'http://0.0.0.0:8000/find_flats/secondary_markets',
+          'http://0.0.0.0:8000/api/find_flats/secondary_markets',
           {
             headers: {
               'Cache-Control': 'no-cache',
