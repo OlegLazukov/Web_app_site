@@ -64,7 +64,7 @@ const CardFlatById = ({ flat, imageUrls }) => {
                       src={
                         img.image_url.startsWith("http")
                           ? img.image_url
-                          : `http://127.0.0.1:8000${img.image_url}`
+                          : `http://0.0.0.0:8000${img.image_url}`
                       }
                       alt={`Фото квартиры`}
                       style={{ marginRight: '8px', marginBottom: '8px' }}

@@ -112,7 +112,7 @@ async def get_find_flats(connection: asyncpg.Connection = Depends(get_db_connect
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Expires": "0",
         "Pragma": "no-cache",
-        "Access-Control-Allow-Origin": "http://localhost:5173"
+        "Access-Control-Allow-Origin": "http://155.212.147.208"
     }
     return Response(content=json_data, media_type="application/json", headers=headers)
 
@@ -135,7 +135,7 @@ async def get_all_news_buildings(connection: asyncpg.Connection = Depends(get_db
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Expires": "0",
         "Pragma": "no-cache",
-        "Access-Control-Allow-Origin": "http://localhost:5173"
+        "Access-Control-Allow-Origin": "http://155.212.147.208"
     }
     return Response(content=json_data, media_type="application/json", headers=headers)
 
@@ -147,7 +147,7 @@ async def get_all_rents(connection: asyncpg.Connection = Depends(get_db_connecti
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Expires": "0",
         "Pragma": "no-cache",
-        "Access-Control-Allow-Origin": "http://localhost:5173"
+        "Access-Control-Allow-Origin": "http://155.212.147.208"
     }
     return Response(content=json_data, media_type="application/json", headers=headers)
 
@@ -159,7 +159,7 @@ async def get_all_secondary_markets(connection: asyncpg.Connection = Depends(get
         "Cache-Control": "no-cache, no-store, must-revalidate",
         "Expires": "0",
         "Pragma": "no-cache",
-        "Access-Control-Allow-Origin": "http://localhost:5173"
+        "Access-Control-Allow-Origin": "http://155.212.147.208"
     }
     return Response(content=json_data, media_type="application/json", headers=headers)
 

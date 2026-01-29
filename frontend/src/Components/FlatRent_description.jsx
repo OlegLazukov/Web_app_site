@@ -63,13 +63,13 @@ function FlatRent() {
       try {
         console.log(`Flat.jsx: Запрос к /find_flats/rents/${uuid}`);
         const response = await axios.get(
-          `http://127.0.0.1:8000/find_flats/rents/${uuid}`,
+          `http://0.0.0.0:8000/find_flats/rents/${uuid}`,
           {
             headers: {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://localhost:8000',
+              'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,
@@ -108,7 +108,7 @@ function FlatRent() {
       (typeof room_count === "number" || !isNaN(Number(room_count)))
     ) {
       axios.get(
-        `http://127.0.0.1:8000/data/images?property_type=${encodeURIComponent(property_type)}&room_count=${Number(room_count)}`
+        `http://0.0.0.0:8000/data/images?property_type=${encodeURIComponent(property_type)}&room_count=${Number(room_count)}`
       )
       .then(resp => {
         setImageUrls(resp.data);

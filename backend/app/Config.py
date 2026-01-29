@@ -10,6 +10,8 @@ origins = [
     "http://localhost:5173",
     "http://127.0.0.1",
     "http://127.0.0.1:5173",
+    "http://155.212.147.208",
+    "http://0.0.0.0:8000"
 ]
 
 user = 'postgres'

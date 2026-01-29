@@ -52,13 +52,13 @@ function Contacts() {
       try {
         console.log('Contacts.jsx: Запрос к /contacts');
         const response = await axios.get(
-          'http://127.0.0.1:8000/contacts',
+          'http://0.0.0.0:8000/contacts',
           {
             headers: {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://localhost:5173'
+              'Access-Control-Allow-Origin': 'http://0.0.0.0:8000'
             },
             // считаем 304 «успешным»
             validateStatus: status =>

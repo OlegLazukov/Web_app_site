@@ -76,13 +76,13 @@ function SecMarket() {
       try {
         console.log('SecMarket.jsx: Запрос к /find_flats/secondary_markets');
         const response = await axios.get(
-          'http://127.0.0.1:8000/find_flats/secondary_markets',
+          'http://0.0.0.0:8000/find_flats/secondary_markets',
           {
             headers: {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://localhost:8000',
+              'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,

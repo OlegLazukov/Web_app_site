@@ -47,7 +47,7 @@ function App() {
             'Cache-Control': 'no-cache',
             'Expires': '0',
             'Pragma': 'no-cache',
-            'Access-Control-Allow-Origin': 'http://localhost:8000'
+            'Access-Control-Allow-Origin': 'http://0.0.0.0:8000'
           },
           // считаем 304 «успешным»
           validateStatus: status =>

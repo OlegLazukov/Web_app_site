@@ -50,12 +50,12 @@ function Addresses() {
     const fetchAddresses = async () => {
       try {
         console.log('Addresses.jsx: Запрос к /addresses');
-        const response = await axios.get('http://127.0.0.1:8000/addresses', {
+        const response = await axios.get('http://0.0.0.0:8000/addresses', {
           headers: {
             'Cache-Control': 'no-cache',
             Expires: '0',
             Pragma: 'no-cache',
-            'Access-Control-Allow-Origin': 'http://localhost:8000',
+            'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
           },
           validateStatus: (status) =>
             (status >= 200 && status < 300) || status === 304,
