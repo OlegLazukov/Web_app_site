@@ -31,7 +31,7 @@ const FormDataUser = () => {
     const onFinish = async (values) => {
         try {
             const response = await axios.post(
-              'http://http://155.212.147.208/api/user_data',
+              '/api/user_data',
               {
                 lastname_user: values.lastname_user,
                 username: values.username,
@@ -44,7 +44,7 @@ const FormDataUser = () => {
                   'Cache-Control': 'no-cache',
                   'Expires': '0',
                   'Pragma': 'no-cache',
-                  'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
+//                   'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
                 },
               }
             );

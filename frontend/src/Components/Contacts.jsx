@@ -52,13 +52,13 @@ function Contacts() {
       try {
         console.log('Contacts.jsx: Запрос к /contacts');
         const response = await axios.get(
-          'http://http://155.212.147.208/api/contacts',
+          '/api/contacts',
           {
             headers: {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://0.0.0.0:8000'
+//               'Access-Control-Allow-Origin': 'http://0.0.0.0:8000'
             },
             // считаем 304 «успешным»
             validateStatus: status =>
@@ -82,7 +82,7 @@ function Contacts() {
   return (
       <ContactWrapper>
         <ContactContainer>
-          <ContactTitle>Контакты наших специалистов</ContactTitle>
+          <ContactTitle>Контакты наших специалистов:</ContactTitle>
           <ContactList>
             {Array.isArray(contacts) ? (
               <Row gutter={16}>

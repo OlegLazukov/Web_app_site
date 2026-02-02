@@ -54,7 +54,10 @@ const SecMarketTitle = styled.h2`
 `;
 
 const ErrorMessage = styled.div`
-  /* Ваши стили для ErrorMessage */
+  color: red;
+  font-size: 16px;
+  text-align: center;
+  padding: 20px;
 `;
 
 const JsonDisplay = styled.pre`
@@ -76,13 +79,13 @@ function SecMarket() {
       try {
         console.log('SecMarket.jsx: Запрос к /find_flats/secondary_markets');
         const response = await axios.get(
-          'http://http://155.212.147.208/api/find_flats/secondary_markets',
+          '/api/find_flats/secondary_markets',
           {
             headers: {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
+//               'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,
@@ -196,7 +199,7 @@ function SecMarket() {
               <CardFlat
                 key={i}
                 flat={secMarket}
-                url_flat="find_flats/secondary_markets"
+                url_flat="api/find_flats/secondary_markets"
               />
             ))}
           </Row>

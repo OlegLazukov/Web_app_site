@@ -77,13 +77,13 @@ function Rent() {
       try {
         console.log('Rent.jsx: Запрос к /find_flats/rents');
         const response = await axios.get(
-          'http://http://155.212.147.208/api/find_flats/rents',
+          '/api/find_flats/rents',
           {
             headers: {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
+//               'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,
@@ -190,7 +190,7 @@ function Rent() {
         ) : (
           <Row gutter={16}>
             {itemsToDisplay.map((rent, i) => (
-              <CardFlat key={i} flat={rent} url_flat="find_flats/rents" />
+              <CardFlat key={i} flat={rent} url_flat="api/find_flats/rents" />
             ))}
           </Row>
         )}

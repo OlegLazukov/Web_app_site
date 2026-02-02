@@ -89,13 +89,13 @@ function NewBuildings() {
       try {
         console.log('SecMarket.jsx: Запрос к /find_flats/news_buildings');
         const response = await axios.get(
-          'http://http://155.212.147.208/api/find_flats/news_buildings',
+          '/api/find_flats/news_buildings',
           {
             headers: {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
+//               'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,
@@ -208,7 +208,7 @@ function NewBuildings() {
               <CardFlat
                 key={i}
                 flat={newBuildingsItem}
-                url_flat="find_flats/news_buildings"
+                url_flat="api/find_flats/news_buildings"
 
               />
             ))}

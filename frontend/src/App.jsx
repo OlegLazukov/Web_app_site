@@ -29,6 +29,8 @@ const Content = styled.div`
   flex-direction: column;
 `;
 
+// const API_BASE_URL = import.meta.env.VITE_APP_API_URL || 'http://localhost:8000';
+
 
 function App() {
   const [flats, setFlats]     = useState([]);
@@ -41,13 +43,13 @@ function App() {
     try {
       console.log(`App.jsx: Запрос к /find_flats${query}`);
       const response = await axios.get(
-        `http://0.0.0.0:8000/api/find_flats${query}`,
+        `/api/find_flats${query}`,
         {
           headers: {
             'Cache-Control': 'no-cache',
             'Expires': '0',
             'Pragma': 'no-cache',
-            'Access-Control-Allow-Origin': 'http://0.0.0.0:8000'
+//             'Access-Control-Allow-Origin': 'http://0.0.0.0:8000'
           },
           // считаем 304 «успешным»
           validateStatus: status =>
