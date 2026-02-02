@@ -1,5 +1,5 @@
 import os
-from urllib.parse import urlparse # Поможет разобрать DATABASE_URL
+from urllib.parse import urlparse
 
 # --- Настройки базы данных ---
 # DATABASE_URL будет приходить из docker-compose.yml
@@ -22,7 +22,7 @@ except Exception as e:
     password = os.getenv("POSTGRES_PASSWORD", "") # Если пароля нет
     database = os.getenv("POSTGRES_DB", "postgres")
     host = os.getenv("DATABASE_HOST", "localhost")
-    port = int(os.getenv("DATABASE_PORT", 5432))
+    port = int(os.getenv("DATABASE_PORT", 5433))
 
 
 cors_origins_str = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://localhost")
