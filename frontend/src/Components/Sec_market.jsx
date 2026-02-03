@@ -85,7 +85,7 @@ function SecMarket() {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-//               'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
+              'Access-Control-Allow-Origin': 'http://155.212.147.208:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,

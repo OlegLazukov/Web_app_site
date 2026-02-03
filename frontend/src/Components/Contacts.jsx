@@ -58,7 +58,7 @@ function Contacts() {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-//               'Access-Control-Allow-Origin': 'http://0.0.0.0:8000'
+              'Access-Control-Allow-Origin': 'http://155.212.147.208:8000'
             },
             // считаем 304 «успешным»
             validateStatus: status =>
