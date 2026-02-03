@@ -49,7 +49,7 @@ const FormContainer = styled.div`
 
 const CardFlatById = ({ flat, imageUrls }) => {
   if (!flat) {
-    return <div>Квартира не найдена.</div>;
+    return <div>Квартира по данному запросу не найдена.</div>;
   }
 
   return (

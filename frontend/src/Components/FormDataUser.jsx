@@ -100,7 +100,7 @@ const FormDataUser = () => {
 
             <StyledFormItem label=" ">
                 <StyledButton type="primary" htmlType="submit">
-                    Оставить заявку
+                    Оставьте заявку
                 </StyledButton>
             </StyledFormItem>
         </Form>
