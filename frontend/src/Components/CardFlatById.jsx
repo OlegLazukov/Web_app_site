@@ -48,6 +48,7 @@ const FormContainer = styled.div`
 
 
 const CardFlatById = ({ flat, imageUrls }) => {
+  console.log(imageUrls)
   if (!flat) {
     return <div>Квартира по данному запросу не найдена.</div>;
   }
@@ -58,7 +59,6 @@ const CardFlatById = ({ flat, imageUrls }) => {
               <ImageAndFormContainer>
                 <InfoContainer>
                   {imageUrls.map((img, index) => (
-                      console.log(img.image_url)
                     <Image
                       key={index}
                       width={300}
