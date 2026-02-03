@@ -58,9 +58,11 @@ const CardFlatById = ({ flat, imageUrls }) => {
               <ImageAndFormContainer>
                 <InfoContainer>
                   {imageUrls.map((img, index) => (
+                      console.log(img.image_url)
                     <Image
                       key={index}
                       width={300}
+
                       src={
                         `/images/${img.image_url}`
                       }
