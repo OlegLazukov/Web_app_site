@@ -97,7 +97,7 @@ async def health():
     return {"status": "ok"}
 
 
-@app.get('/find_flats')
+@app.get('/api/find_flats')
 async def get_find_flats(connection: asyncpg.Connection = Depends(get_db_connection)):
     # Получаем данные из базы данных и преобразуем в pydantic модели
     news_buildings = await get_news_building(connection)
@@ -118,16 +118,16 @@ async def get_find_flats(connection: asyncpg.Connection = Depends(get_db_connect
 
 
 
-@app.get("/addresses", response_model=List[str])
+@app.get("/api/addresses", response_model=List[str])
 async def get_addresses():
     return Config.lst_address
 
-@app.get("/contacts", response_model=List[str])
+@app.get("/api/contacts", response_model=List[str])
 async def get_contacts():
     return Config.lst_contacts
 
 
-@app.get("/find_flats/news_buildings")
+@app.get("/api/find_flats/news_buildings")
 async def get_all_news_buildings(connection: asyncpg.Connection = Depends(get_db_connection)):
     news_buildings = await get_news_building(connection)
     json_data = json.dumps([item.model_dump() for item in news_buildings], default=str, ensure_ascii=False, indent=4)
@@ -139,7 +139,7 @@ async def get_all_news_buildings(connection: asyncpg.Connection = Depends(get_db
     }
     return Response(content=json_data, media_type="application/json", headers=headers)
 
-@app.get("/find_flats/rents")
+@app.get("/api/find_flats/rents")
 async def get_all_rents(connection: asyncpg.Connection = Depends(get_db_connection)):
     rents = await get_rent(connection)
     json_data = json.dumps([item.model_dump() for item in rents], default=str, ensure_ascii=False, indent=4)
@@ -151,7 +151,7 @@ async def get_all_rents(connection: asyncpg.Connection = Depends(get_db_connecti
     }
     return Response(content=json_data, media_type="application/json", headers=headers)
 
-@app.get("/find_flats/secondary_markets")
+@app.get("/api/find_flats/secondary_markets")
 async def get_all_secondary_markets(connection: asyncpg.Connection = Depends(get_db_connection)):
     secondary_market = await get_secondary_market(connection)
     json_data = json.dumps([item.model_dump() for item in secondary_market], default=str, ensure_ascii=False, indent=4)
@@ -164,7 +164,7 @@ async def get_all_secondary_markets(connection: asyncpg.Connection = Depends(get
     return Response(content=json_data, media_type="application/json", headers=headers)
 
 
-@app.get("/find_flats/{uuid}")
+@app.get("/api/find_flats/{uuid}")
 async def get_find_flats_by_id(uuid: str, connection: asyncpg.Connection = Depends(get_db_connection)):
     search_functions = [
         get_news_buildings_by_id,
@@ -181,7 +181,7 @@ async def get_find_flats_by_id(uuid: str, connection: asyncpg.Connection = Depen
     raise HTTPException(status_code=404, detail="Flats not found")
 
 
-@app.get("/find_flats/news_buildings/{uuid}")
+@app.get("/api/find_flats/news_buildings/{uuid}")
 @alru_cache
 async def get_news_buildings_by_id(uuid: str, connection: asyncpg.Connection = Depends(get_db_connection)):
     data = await connection.fetchrow("SELECT * FROM news_buildings WHERE id = $1", uuid)
@@ -193,7 +193,7 @@ async def get_news_buildings_by_id(uuid: str, connection: asyncpg.Connection = D
     news_building = NewsBuilding(**record_dict)
     return news_building.model_dump()
 
-@app.get("/find_flats/secondary_markets/{uuid}")
+@app.get("/api/find_flats/secondary_markets/{uuid}")
 @alru_cache
 async def get_secondary_markets_by_id(uuid: str, connection: asyncpg.Connection = Depends(get_db_connection)):
     data = await connection.fetchrow("SELECT * FROM secondary_market WHERE id = $1", uuid)
@@ -206,7 +206,7 @@ async def get_secondary_markets_by_id(uuid: str, connection: asyncpg.Connection 
     return sec_market.model_dump()
 
 
-@app.get("/find_flats/rents/{uuid}")
+@app.get("/api/find_flats/rents/{uuid}")
 @alru_cache
 async def get_rents_by_id(uuid: str, connection: asyncpg.Connection = Depends(get_db_connection)):
     data = await connection.fetchrow("SELECT * FROM rent WHERE id = $1", uuid)
@@ -218,7 +218,7 @@ async def get_rents_by_id(uuid: str, connection: asyncpg.Connection = Depends(ge
     rent = Rent(**record_dict)
     return rent.model_dump()
 
-@app.get("/data/images", response_model=List[ImageModel])
+@app.get("/api/data/images", response_model=List[ImageModel])
 @alru_cache
 async def get_images(
     property_type: str,
@@ -235,7 +235,7 @@ async def get_images(
     return [ImageModel(**dict(row)) for row in data]
 
 
-@app.post("/user_data")
+@app.post("/api/user_data")
 async def post_user_data(user_data: DataUser, connection: asyncpg.Connection = Depends(get_db_connection)):
     try:
         email_to_insert = user_data.email if user_data.email else "Почта не указана"
