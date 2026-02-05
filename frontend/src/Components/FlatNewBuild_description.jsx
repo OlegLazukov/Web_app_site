@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import CardFlatById from './CardFlatById';
+import CardFlatById from './CardFlatById.jsx';
 
 const FlatNewBuildWrapper = styled.div`
   flex: 1;
