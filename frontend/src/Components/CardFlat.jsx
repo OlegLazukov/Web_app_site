@@ -29,7 +29,7 @@ const CardFlat = ({ flat, url_flat }) => (
         <Card title={
           <MainLink
             href={`/${url_flat}/${flat.id}`}
-            target="_blank"
+//             target="_blank"
             rel="noopener noreferrer"
           >
             {flat.room_count} квартира {flat.square} м²
