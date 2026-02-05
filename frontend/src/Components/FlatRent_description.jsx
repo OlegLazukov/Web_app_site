@@ -61,7 +61,7 @@ function FlatRent() {
     const fetchRent = async () => {
       setLoading(true);
       try {
-        console.log(`Flat.jsx: Запрос к /find_flats/rents/${uuid}`);
+        console.log(`FlatRent.jsx: Запрос к /find_flats/rents/${uuid}`);
         const response = await axios.get(
           `/api/find_flats/rents/${uuid}`,
           {
@@ -84,7 +84,7 @@ function FlatRent() {
         setFlatRent(response.data);
         setError(null); // Сброс ошибки при успешной загрузке
       } catch (e) {
-        console.error('Flat.jsx: Ошибка при получении данных:', e);
+        console.error('FlatRent.jsx: Ошибка при получении данных:', e);
         setError(
           'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
         );

@@ -67,7 +67,6 @@ function FlatNewBuild() {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://155.212.147.208:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,
@@ -75,14 +74,14 @@ function FlatNewBuild() {
           }
         );
         console.log(
-          'Flat.jsx: Ответ сервера:',
+          'FlatNewBuild.jsx: Ответ сервера:',
           response.status,
           response.data
         );
         setFlatNewBuild(response.data);
         setError(null); // Сброс ошибки при успешной загрузке
       } catch (e) {
-        console.error('Flat.jsx: Ошибка при получении данных:', e);
+        console.error('FlatNewBuild.jsx: Ошибка при получении данных:', e);
         setError(
           'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
         );

@@ -59,7 +59,7 @@ function FlatSecMarket() {
     const fetchSecMarket = async () => {
       setLoading(true);
       try {
-        console.log(`Flat.jsx: Запрос к /find_flats/secondary_markets/${uuid}`);
+        console.log(`FlatSecMarket.jsx: Запрос к /find_flats/secondary_markets/${uuid}`);
         const response = await axios.get(
           `/api/find_flats/secondary_markets/${uuid}`,
           {
@@ -82,7 +82,7 @@ function FlatSecMarket() {
         setFlatSecMarket(response.data);
         setError(null); // Сброс ошибки при успешной загрузке
       } catch (e) {
-        console.error('Flat.jsx: Ошибка при получении данных:', e);
+        console.error('FlatSecMarket.jsx: Ошибка при получении данных:', e);
         setError(
           'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
         );
