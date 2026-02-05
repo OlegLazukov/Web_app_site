@@ -57,42 +57,42 @@ function FlatNewBuild() {
 
   useEffect(() => {
     const fetchNewBuild = async () => {
-      setLoading(true);
       try {
-        console.log(`Flat.jsx: Запрос к /find_flats/news_buildings/${uuid}`);
-        const response = await axios.get(
-          `/api/find_flats/news_buildings/${uuid}`,
-          {
-            headers: {
-              'Cache-Control': 'no-cache',
-              'Expires': '0',
-              'Pragma': 'no-cache',
-            },
-            validateStatus: (status) =>
-              (status >= 200 && status < 300) || status === 304,
-            timeout: 5000,
-          }
-        );
-        console.log(
-          'FlatNewBuild.jsx: Ответ сервера:',
-          response.status,
-          response.data
-        );
-        setFlatNewBuild(response.data);
-        setError(null); // Сброс ошибки при успешной загрузке
-      } catch (e) {
-        console.error('FlatNewBuild.jsx: Ошибка при получении данных:', e);
-        setError(
-          'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
-        );
-        setFlatNewBuild(null); // Сброс данных о квартире при ошибке
-      } finally {
-        setLoading(false);
-      }
-    };
+          setLoading(true);
+          console.log(`Flat.jsx: Запрос к /find_flats/news_buildings/${uuid}`);
+          const response = await axios.get(
+            `/api/find_flats/news_buildings/${uuid}`,
+            {
+              headers: {
+                'Cache-Control': 'no-cache',
+                'Expires': '0',
+                'Pragma': 'no-cache',
+              },
+              validateStatus: (status) =>
+                (status >= 200 && status < 300) || status === 304,
+              timeout: 5000,
+            }
+          );
+          console.log(
+            'FlatNewBuild.jsx: Ответ сервера:',
+            response.status,
+            response.data
+          );
+          setFlatNewBuild(response.data);
+          setError(null); // Сброс ошибки при успешной загрузке
+        } catch (e) {
+          console.error('FlatNewBuild.jsx: Ошибка при получении данных:', e);
+          setError(
+            'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
+          );
+          setFlatNewBuild(null); // Сброс данных о квартире при ошибке
+        } finally {
+          setLoading(false);
+        }
+      };
 
-    fetchNewBuild();
-  }, [uuid]);
+      fetchNewBuild();
+    }, [uuid]);
 
   useEffect(() => {
   if (flatNewBuild) {
@@ -112,7 +112,10 @@ function FlatNewBuild() {
       })
       .catch(err => {
         setImageUrls([]);
-      });
+      })
+      .finally(() => {
+          setLoading(false);  //  Устанавливаем loading в false после запроса
+          });
     } else {
       console.warn("Некорректные property_type или room_count", property_type, room_count);
       }

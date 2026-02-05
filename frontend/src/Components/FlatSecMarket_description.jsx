@@ -57,17 +57,16 @@ function FlatSecMarket() {
 
   useEffect(() => {
     const fetchSecMarket = async () => {
-      setLoading(true);
       try {
-        console.log(`FlatSecMarket.jsx: Запрос к /find_flats/secondary_markets/${uuid}`);
-        const response = await axios.get(
-          `/api/find_flats/secondary_markets/${uuid}`,
+          setLoading(true);
+          console.log(`FlatSecMarket.jsx: Запрос к /find_flats/secondary_markets/${uuid}`);
+          const response = await axios.get(
+            `/api/find_flats/secondary_markets/${uuid}`,
           {
             headers: {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://155.212.147.208:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,
@@ -113,7 +112,9 @@ function FlatSecMarket() {
       })
       .catch(err => {
         setImageUrls([]);
-      });
+      }).finally(() => {
+          setLoading(false);  //  Устанавливаем loading в false после запроса
+          });
     } else {
       console.warn("Некорректные property_type или room_count", property_type, room_count);
       }

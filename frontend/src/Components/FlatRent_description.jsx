@@ -59,43 +59,42 @@ function FlatRent() {
 
   useEffect(() => {
     const fetchRent = async () => {
-      setLoading(true);
       try {
-        console.log(`FlatRent.jsx: Запрос к /find_flats/rents/${uuid}`);
-        const response = await axios.get(
-          `/api/find_flats/rents/${uuid}`,
-          {
-            headers: {
-              'Cache-Control': 'no-cache',
-              'Expires': '0',
-              'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://155.212.147.208:8000',
-            },
-            validateStatus: (status) =>
-              (status >= 200 && status < 300) || status === 304,
-            timeout: 5000,
+          setLoading(true);
+          console.log(`FlatRent.jsx: Запрос к /find_flats/rents/${uuid}`);
+          const response = await axios.get(
+            `/api/find_flats/rents/${uuid}`,
+            {
+              headers: {
+                'Cache-Control': 'no-cache',
+                'Expires': '0',
+                'Pragma': 'no-cache',
+              },
+              validateStatus: (status) =>
+                (status >= 200 && status < 300) || status === 304,
+              timeout: 5000,
+            }
+          );
+          console.log(
+            'Flat.jsx: Ответ сервера:',
+            response.status,
+            response.data
+          );
+          setFlatRent(response.data);
+          setError(null); // Сброс ошибки при успешной загрузке
+        } catch (e) {
+          console.error('FlatRent.jsx: Ошибка при получении данных:', e);
+          setError(
+            'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
+          );
+          setFlatRent(null); // Сброс данных о квартире при ошибке
+        } finally {
+          setLoading(false);
           }
-        );
-        console.log(
-          'Flat.jsx: Ответ сервера:',
-          response.status,
-          response.data
-        );
-        setFlatRent(response.data);
-        setError(null); // Сброс ошибки при успешной загрузке
-      } catch (e) {
-        console.error('FlatRent.jsx: Ошибка при получении данных:', e);
-        setError(
-          'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
-        );
-        setFlatRent(null); // Сброс данных о квартире при ошибке
-      } finally {
-        setLoading(false);
-      }
-    };
+        };
 
-    fetchRent();
-  }, [uuid]);
+      fetchRent();
+    }, [uuid]);
 
   useEffect(() => {
   if (flatRent) {
@@ -115,7 +114,9 @@ function FlatRent() {
       })
       .catch(err => {
         setImageUrls([]);
-      });
+      }).finally(() => {
+          setLoading(false);  //  Устанавливаем loading в false после запроса
+          });
     } else {
       console.warn("Некорректные property_type или room_count", property_type, room_count);
       }

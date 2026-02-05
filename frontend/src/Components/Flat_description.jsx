@@ -58,66 +58,68 @@ function Flat() {
   useEffect(() => {
     const fetchFlat = async () => {
       try {
-        console.log(`Flat.jsx: Запрос к /find_flats/${uuid}`);
-        const response = await axios.get(
-          `/api/find_flats/${uuid}`,
-          {
-            headers: {
-              'Cache-Control': 'no-cache',
-              'Expires': '0',
-              'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://155.212.147.208:8000',
-            },
-            validateStatus: (status) =>
-              (status >= 200 && status < 300) || status === 304,
-            timeout: 5000,
-          }
-        );
-        console.log(
+          setLoading(true);
+          console.log(`Flat.jsx: Запрос к /find_flats/${uuid}`);
+          const response = await axios.get(
+              `/api/find_flats/${uuid}`,
+              {
+                  headers: {
+                      'Cache-Control': 'no-cache',
+                      'Expires': '0',
+                      'Pragma': 'no-cache',
+                      },
+                  validateStatus: (status) =>
+                  (status >= 200 && status < 300) || status === 304,
+                  timeout: 5000,
+                  }
+              );
+          console.log(
           'Flat.jsx: Ответ сервера:',
           response.status,
           response.data
-        );
-        setFlat(response.data);
-        setError(null); // Сброс ошибки при успешной загрузке
-      } catch (e) {
-        console.error('Flat.jsx: Ошибка при получении данных:', e);
-        setError(
-          'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
-        );
-        setFlat(null); // Сброс данных о квартире при ошибке
-      } finally {
-        setLoading(false);
-      }
-    };
+          );
+          setFlat(response.data);
+          setError(null); // Сброс ошибки при успешной загрузке
+        } catch (e) {
+          console.error('Flat.jsx: Ошибка при получении данных:', e);
+          setError(
+            'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
+          );
+          setFlat(null); // Сброс данных о квартире при ошибке
+        } finally {
+          setLoading(false);
+        }
+      };
 
-    fetchFlat();
-  }, [uuid]);
+      fetchFlat();
+    }, [uuid]);
 
   useEffect(() => {
-  if (flat) {
-    console.log('flat:', flat, 'property_type:', typeof flat.property_type, 'room_count:', typeof flat.room_count);
-    const room_count = propertyTypeRoomCount[flat.room_count];
-    const property_type = flat.property_type
-    if (
-      typeof property_type === "string" &&
-      property_type.length > 0 &&
-      (typeof room_count === "number" || !isNaN(Number(room_count)))
-    ) {
-      axios.get(
-        `/api/data/images?property_type=${encodeURIComponent(property_type)}&room_count=${Number(room_count)}`
-      )
-      .then(resp => {
-        setImageUrls(resp.data);
-      })
-      .catch(err => {
-        setImageUrls([]);
-      });
-    } else {
-      console.warn("Некорректные property_type или room_count", property_type, room_count);
-      }
-    }
-  }, [flat]);
+      if (flat) {
+          const room_count = propertyTypeRoomCount[flat.room_count];
+          const property_type = flat.property_type;
+
+      if (
+          typeof property_type === "string" &&
+          property_type.length > 0 &&
+          (typeof room_count === "number" || !isNaN(Number(room_count)))
+      ) {
+          setLoading(true);  //  Устанавливаем loading в true перед запросом
+          axios.get(
+              `/api/data/images?property_type=${encodeURIComponent(property_type)}&room_count=${Number(room_count)}`
+          ).then(resp => {
+              setImageUrls(resp.data);
+              }).catch(err => {
+                  console.warn("Ошибка при получении изображений:", err);
+                  setImageUrls([]);
+                  }).finally(() => {
+                      setLoading(false);  //  Устанавливаем loading в false после запроса
+                      });
+                  } else {
+                      console.warn("Некорректные property_type или room_count", property_type, room_count);
+                      }
+                  }
+              }, [flat]);
 
 
 
