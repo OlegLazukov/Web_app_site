@@ -190,7 +190,7 @@ function Rent() {
         ) : (
           <Row gutter={16}>
             {itemsToDisplay.map((rent, i) => (
-              <CardFlat key={i} flat={rent} url_flat="api/find_flats/rents" />
+              <CardFlat key={i} flat={rent} url_flat="find_flats/rents" />
             ))}
           </Row>
         )}

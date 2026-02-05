@@ -133,7 +133,7 @@ export default function MainContent({ flats, loading, error }) {
         ) : (
           <Row gutter={16}>
             {itemsToDisplay.map((flat, i) => (
-              <CardFlat key={i} flat={flat} url_flat="api/find_flats" />
+              <CardFlat key={i} flat={flat} url_flat="find_flats" />
             ))}
           </Row>
         )}
