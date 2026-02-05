@@ -1,9 +1,10 @@
 import React from 'react';
 import { Card, Col } from 'antd';
 import styled from 'styled-components';
-import { Typography } from 'antd';
+// import { Typography } from 'antd';
+import { Link as RouterLink } from 'react-router-dom';
 
-const { Link } = Typography;
+// const { Link } = Typography;
 
 const FlatInfo = styled.div`
   font-size: 24px;
@@ -18,8 +19,13 @@ const StyledCard = styled(Card)`
 `;
 
 
-const MainLink = styled(Link)`
+const MainLink = styled(RouterLink)`
   font-size: 30px;
+  color: inherit; /* Чтобы не было синих ссылок, если stylization antd не применяется */
+  text-decoration: none; /* Убираем подчеркивание, если нужно */
+  &:hover {
+    text-decoration: underline; /* Добавляем подчеркивание при наведении, если нужно */
+  }
 `;
 
 const CardFlat = ({ flat, url_flat }) => (
@@ -28,9 +34,7 @@ const CardFlat = ({ flat, url_flat }) => (
       <StyledCard>
         <Card title={
           <MainLink
-            href={`/${url_flat}/${flat.id}`}
-//             target="_blank"
-            rel="noopener noreferrer"
+            to={`/${url_flat}/${flat.id}`}
           >
             {flat.room_count} квартира {flat.square} м²
           </MainLink>
