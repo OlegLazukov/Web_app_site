@@ -49,7 +49,6 @@ const FlatItem = styled.li`
 
 function Flat() {
   const { uuid } = useParams();
-  console.log('UUID из параметров:', uuid);
   const [flat, setFlat] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

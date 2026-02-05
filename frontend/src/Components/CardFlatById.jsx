@@ -48,7 +48,8 @@ const FormContainer = styled.div`
 
 
 const CardFlatById = ({ flat, imageUrls }) => {
-  console.log("Здесь объект:", imageUrls)
+  console.log("CardFlatById: flat =", flat);
+  console.log("CardFlatById: imageUrls =", imageUrls);
   if (!flat) {
     return <div>Квартира по данному запросу не найдена.</div>;
   }
