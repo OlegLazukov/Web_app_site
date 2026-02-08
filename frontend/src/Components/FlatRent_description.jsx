@@ -12,6 +12,15 @@ const FlatRentWrapper = styled.div`
   border-radius: 5px;
 `;
 
+const breakpoints = {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+  xxl: '1600px',
+};
+
+
 const propertyTypeRoomCount = {
   'Однокомнатная': 1,
   'Двухкомнатная': 2,
@@ -31,12 +40,20 @@ const FlatRentContainer = styled.div`
   overflow-y: auto;
 `;
 
-const FlatRentTitle = styled.h2`
+const FlatRentTitle = styled.h1`
     margin-bottom: 20px;
     font-size: 36px;
     text-align: center;
     color: #696969;
     text-shadow: 3px 3px 3px white;
+    @media (max-width: ${breakpoints.md}) {
+        font-size: 28px;
+        }
+    @media (max-width: ${breakpoints.sm}) {
+        font-size: 24px;
+        margin-bottom: 10px;
+        }
+
 `;
 
 const FlatRentItem = styled.li`

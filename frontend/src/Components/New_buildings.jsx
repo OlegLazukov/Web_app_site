@@ -5,6 +5,13 @@ import { Input, Typography, Col, Row, Select } from 'antd';
 import CardFlat from './CardFlat.jsx';
 
 const { Link } = Typography;
+const breakpoints = {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+  xxl: '1600px',
+};
 
 const NewBuildingsWrapper = styled.div`
   flex: 1;
@@ -46,18 +53,45 @@ const { Search } = Input;
 const WrapperSearch = styled.div`
   margin-bottom: 30px;
   padding-right: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: ${breakpoints.md}) {
+    padding-right: 0;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  & > .ant-input-group-wrapper {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+  & > .ant-select {
+    width: 90% !important;
+    margin-right: 0 !important;
+  }
 `;
 
 const NewBuildingsContainer = styled.div`
   height: 100%;
 `;
 
-const NewBuildingsTitle = styled.h2`
+const NewBuildingsTitle = styled.h1`
   margin-bottom: 20px;
   font-size: 36px;
   text-align: center;
   color: #696969;
   text-shadow: 3px 3px 3px white;
+  @media (max-width: ${breakpoints.md}) {
+    font-size: 28px;
+  }
+
+  @media (max-width: ${breakpoints.sm}) {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
 `;
 
 const NewBuildingsItem = styled.li`
@@ -87,7 +121,6 @@ function NewBuildings() {
       setLoading(true);
       setError(null);
       try {
-        console.log('SecMarket.jsx: Запрос к /find_flats/news_buildings');
         const response = await axios.get(
           '/api/find_flats/news_buildings',
           {
@@ -102,14 +135,8 @@ function NewBuildings() {
             timeout: 5000,
           }
         );
-        console.log(
-          'New_Buildings.jsx: Ответ сервера:',
-          response.status,
-          response.data
-        );
         setNewBuildings(response.data);
       } catch (e) {
-        console.error('New_Buildings.jsx: Ошибка при получении данных:', e);
         setError(
           'Ошибка при загрузке данных о новостройках. Пожалуйста, попробуйте позже.'
         );
@@ -123,14 +150,11 @@ function NewBuildings() {
   }, []);
 
     const handleSearch = (value) => {
-    console.log('handleSearch вызвана', value);
     setSearchTerm(value);
 
     let results = newBuildings.filter((item) => {
       let streetMatch = true;
       let roomCountMatch = true;
-
-      //  Проверка соответствия по улице
       if (value) {
         if (item.location && typeof item.location === 'string') {
           const locationParts = item.location.split(',');
@@ -143,8 +167,6 @@ function NewBuildings() {
           streetMatch = false;
         }
       }
-
-      //  Проверка соответствия по количеству комнат
       if (roomCount) {
         roomCountMatch = String(item.room_count) === roomCount;
       }

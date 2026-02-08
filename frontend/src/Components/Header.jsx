@@ -7,13 +7,19 @@ import { Link } from 'react-router-dom';
 
 
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-around;
   align-items: center;
   background: #f0f0f0;
   padding: 20px;
   border-radius: 10px;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    justify-content: space-between;
+    padding: 10px;
+  }
 `;
 
 const Nav = styled.nav`
@@ -44,6 +50,10 @@ const NavButton = styled.button`
   color: #333;
   cursor: pointer;
   &:hover { color: #007bff; }
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    padding: 5px;
+  }
 `;
 
 export default function Header({ onFilter }) {
@@ -83,8 +93,8 @@ export default function Header({ onFilter }) {
         </Link>
       </NavButton>
 
-      <Dropdown menu={{ items }}>
-        <NavButton>
+      <Dropdown menu={{ items }} placement="bottomLeft" trigger={['click']} >
+        <NavButton onClick={e => e.preventDefault()}>
           <Space>
             Найти квартиру <DownOutlined />
           </Space>

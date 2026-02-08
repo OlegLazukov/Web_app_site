@@ -3,27 +3,55 @@ import { Button, Form, Input, message } from 'antd';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const Title = styled.h2`
+const Title = styled.h3`
     text-align: center;
-    font-size: 24px;
-    margin-bottom: 30px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    @media (min-width: 768px) {
+        font-size: 24px;
+        margin-bottom: 30px;
+        }
 `;
 
 const StyledFormItem = styled(Form.Item)`
   margin-bottom: 12px;
   label {
-    font-size: 20px !important;
+    font-size: 16px !important;
   }
 `;
 
 const StyledInput = styled(Input)`
-  font-size: 18px;
+  font-size: 16px;
   padding: 8px;
 `;
 
 const StyledButton = styled(Button)`
   font-size: 18px;
 `;
+
+const StyledForm = styled(Form)`
+  max-width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+
+
+  .ant-form-item-label {
+    width: auto;
+    padding-right: 8px;
+  }
+
+  .ant-form-item-control {
+    flex: 1;
+  }
+`;
+
 
 const FormDataUser = () => {
     const [form] = Form.useForm();
@@ -67,13 +95,8 @@ const FormDataUser = () => {
         <Form
             form={form}
             name="wrap"
-            labelCol={{ flex: '110px' }}
             labelAlign="left"
-            labelWrap
-            wrapperCol={{ flex: 1 }}
-            layout="horizontal"
             colon={false}
-            style={{ maxWidth: 600 }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
         >

@@ -12,6 +12,14 @@ const FlatNewBuildWrapper = styled.div`
   border-radius: 5px;
 `;
 
+const breakpoints = {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+  xxl: '1600px',
+};
+
 const propertyTypeRoomCount = {
   'Однокомнатная': 1,
   'Двухкомнатная': 2,
@@ -31,12 +39,21 @@ const FlatNewBuildContainer = styled.div`
   overflow-y: auto;
 `;
 
-const FlatNewBuildTitle = styled.h2`
+const FlatNewBuildTitle = styled.h1`
   text-align: center;
   color: #fff;
   font-size: 36px;
   padding: 50px;
   font-style: italic;
+  @media (max-width: ${breakpoints.md}) {
+    font-size: 28px;
+  }
+
+  @media (max-width: ${breakpoints.sm}) {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
 `;
 
 const FlatNewBuildItem = styled.li`

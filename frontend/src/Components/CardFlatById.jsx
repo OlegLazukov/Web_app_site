@@ -3,8 +3,17 @@ import { Card, Image } from 'antd';
 import styled from 'styled-components';
 import FormDataUser from './FormDataUser.jsx';
 
-
-
+const breakpoints = {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+};
+const ResponsiveImage = styled(Image)`
+  max-width: 100%;
+  height: auto;
+  display: block;
+`;
 
 const StyledCard = styled(Card)`
   border: 2px solid #d9d9d9;
@@ -30,19 +39,37 @@ const CardInfo = styled.p`
 
 const ImageAndFormContainer = styled.div`
   display: flex;
-  align-items: stretch;
   gap: 5px;
+  flex-direction: row;
+  align-items: flex-start;
+  @media (max-width: ${breakpoints.md}) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding-right: 10px;
+    @media (max-width: ${breakpoints.md}) {
+    width: 100%;
+    padding-right: 0;
+  }
 `;
 
 const FormContainer = styled.div`
   width: 300px;
   padding-right: 10px;
   padding-bottom: 20px;
+  flex-shrink: 0;
+
+  @media (max-width: ${breakpoints.md}) {
+    width: 95%;
+    max-width: 400px;
+    padding-right: 0;
+    margin: 0 auto;
+  }
 `;
 
 
@@ -60,9 +87,8 @@ const CardFlatById = ({ flat, imageUrls }) => {
               <ImageAndFormContainer>
                 <InfoContainer>
                   {imageUrls.map((img, index) => (
-                    <Image
+                    <ResponsiveImage
                       key={index}
-                      width={300}
 
                       src={
                         img.image_url.startsWith("http")

@@ -12,6 +12,11 @@ const ContactWrapper = styled.div`
   background-image: url("/images/back_photo.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center top;
+  min-height: 400px;
+  @media (max-width: 768px) {
+      background-position: center center;
+      }
 `;
 
 
@@ -36,7 +41,7 @@ const ContactList = styled.ul`
 const ContactItem = styled.li`
   margin-bottom: 10px;
   font-size: 24px;
-  padding: 40px;
+  padding: 25px;
   color: #fff;
   text-align: center;
   width: 100%;

@@ -30,7 +30,7 @@ const MainLink = styled(RouterLink)`
 
 const CardFlat = ({ flat, url_flat }) => (
 
-  <Col span={12}>
+  <Col xs={24} sm={12} md={8} lg={6} xl={6}>
       <StyledCard>
         <Card title={
           <MainLink

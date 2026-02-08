@@ -6,8 +6,16 @@ import CardFlat from './CardFlat.jsx';
 
 const { Link } = Typography;
 
+const breakpoints = {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+  xxl: '1600px',
+};
+
 const RentWrapper = styled.div`
-  flex: 1; /* Растягиваем на всю высоту */
+  flex: 1;
   display: flex;
   flex-direction: column;
   border: 1px solid #ddd;
@@ -32,6 +40,25 @@ const NoResults = styled.div`
 const WrapperSearch = styled.div`
   margin-bottom: 30px;
   padding-right: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: ${breakpoints.md}) {
+    padding-right: 0;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  & > .ant-input-group-wrapper {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+  & > .ant-select {
+    width: 90% !important;
+    margin-right: 0 !important;
+  }
 `;
 
 const RentContainer = styled.div`
@@ -45,12 +72,21 @@ const RentBackImg = styled.div`
   background-repeat: no-repeat;
 `;
 
-const RentTitle = styled.h2`
+const RentTitle = styled.h1`
   margin-bottom: 20px;
   font-size: 36px;
   text-align: center;
   color: #696969;
   text-shadow: 3px 3px 3px white;
+  @media (max-width: ${breakpoints.md}) {
+    font-size: 28px;
+  }
+
+  @media (max-width: ${breakpoints.sm}) {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
 `;
 
 const ErrorMessage = styled.div`

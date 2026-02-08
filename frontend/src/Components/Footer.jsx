@@ -8,10 +8,15 @@ const FooterContainer = styled.footer`
   font-size: 0.9rem;
   color: #555;
   border-top: 1px solid #ddd;
-  position: fixed; /* Фиксируем футер */
-  bottom: 0; /* Прижимаем к низу */
-  left: 0; /* Прижимаем к левому краю */
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  @media (max-width: 768px) {
+    position: static;
+    font-size: 0.8rem;
+    padding: 10px;
+  }
 `;
 
 const FooterLink = styled.a`
@@ -20,6 +25,10 @@ const FooterLink = styled.a`
   text-decoration: none;
   &:hover {
     text-decoration: underline;
+  }
+    @media (max-width: 768px) {
+    display: block;    /* Каждая ссылка на новой строке */
+    margin: 5px auto; /* Центрируем ссылки и добавляем отступы сверху и снизу */
   }
 `;
 
