@@ -6,13 +6,6 @@ import CardFlat from './CardFlat.jsx';
 
 const { Link } = Typography;
 
-const breakpoints = {
-  sm: '576px',
-  md: '768px',
-  lg: '992px',
-  xl: '1200px',
-  xxl: '1600px',
-};
 
 const RentWrapper = styled.div`
   flex: 1;
@@ -44,21 +37,6 @@ const WrapperSearch = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-
-  @media (max-width: ${breakpoints.md}) {
-    padding-right: 0;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  & > .ant-input-group-wrapper {
-    width: 90%;
-    margin-bottom: 10px;
-  }
-  & > .ant-select {
-    width: 90% !important;
-    margin-right: 0 !important;
-  }
 `;
 
 const RentContainer = styled.div`
@@ -78,15 +56,6 @@ const RentTitle = styled.h1`
   text-align: center;
   color: #696969;
   text-shadow: 3px 3px 3px white;
-  @media (max-width: ${breakpoints.md}) {
-    font-size: 28px;
-  }
-
-  @media (max-width: ${breakpoints.sm}) {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-
 `;
 
 const ErrorMessage = styled.div`
@@ -111,7 +80,6 @@ function Rent() {
       setLoading(true);
       setError(null);
       try {
-        console.log('Rent.jsx: Запрос к /find_flats/rents');
         const response = await axios.get(
           '/api/find_flats/rents',
           {
@@ -119,7 +87,6 @@ function Rent() {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://155.212.147.208:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,
@@ -129,7 +96,6 @@ function Rent() {
         console.log('Rent.jsx: Ответ сервера:', response.status, response.data);
         setRent(response.data);
       } catch (e) {
-        console.error('Rent.jsx: Ошибка при получении данных:', e);
         setError(
           'Ошибка при загрузке данных об аренде. Пожалуйста, попробуйте позже.'
         );
@@ -143,7 +109,6 @@ function Rent() {
   }, []);
 
   const handleSearch = (value) => {
-    console.log('handleSearch вызвана', value);
     setSearchTerm(value);
     let results = [];
     if (value) {
@@ -151,7 +116,6 @@ function Rent() {
         let streetMatch = true;
         let roomCountMatch = true;
 
-        //  Проверка соответствия по улице
         if (value) {
           if (item.location && typeof item.location === 'string') {
             const locationParts = item.location.split(',');
@@ -164,8 +128,6 @@ function Rent() {
             streetMatch = false;
           }
         }
-
-        //  Проверка соответствия по количеству комнат
         if (roomCount) {
           roomCountMatch = String(item.room_count) === roomCount;
         }
@@ -226,7 +188,7 @@ function Rent() {
         ) : (
           <Row gutter={16}>
             {itemsToDisplay.map((rent, i) => (
-              <CardFlat key={i} flat={rent} url_flat="find_flats/rents" />
+              <CardFlat key={i} flat={rent} url_flat="api/find_flats/rents" />
             ))}
           </Row>
         )}

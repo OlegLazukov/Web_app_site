@@ -5,13 +5,6 @@ import { Input, Typography, Col, Row, Select } from 'antd';
 import CardFlat from './CardFlat.jsx';
 
 const { Link } = Typography;
-const breakpoints = {
-  sm: '576px',
-  md: '768px',
-  lg: '992px',
-  xl: '1200px',
-  xxl: '1600px',
-};
 
 const NewBuildingsWrapper = styled.div`
   flex: 1;
@@ -57,21 +50,6 @@ const WrapperSearch = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-
-  @media (max-width: ${breakpoints.md}) {
-    padding-right: 0;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  & > .ant-input-group-wrapper {
-    width: 90%;
-    margin-bottom: 10px;
-  }
-  & > .ant-select {
-    width: 90% !important;
-    margin-right: 0 !important;
-  }
 `;
 
 const NewBuildingsContainer = styled.div`
@@ -84,14 +62,6 @@ const NewBuildingsTitle = styled.h1`
   text-align: center;
   color: #696969;
   text-shadow: 3px 3px 3px white;
-  @media (max-width: ${breakpoints.md}) {
-    font-size: 28px;
-  }
-
-  @media (max-width: ${breakpoints.sm}) {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
 `;
 
 const NewBuildingsItem = styled.li`
@@ -105,7 +75,6 @@ const NewBuildingsItem = styled.li`
 `;
 
 const JsonDisplay = styled.pre`
-  /* Ваши стили для JsonDisplay */
 `;
 
 function NewBuildings() {
@@ -128,7 +97,6 @@ function NewBuildings() {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://155.212.147.208:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,
@@ -230,7 +198,7 @@ function NewBuildings() {
               <CardFlat
                 key={i}
                 flat={newBuildingsItem}
-                url_flat="find_flats/news_buildings"
+                url_flat="api/find_flats/news_buildings"
 
               />
             ))}

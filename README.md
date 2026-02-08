@@ -1,17 +1,95 @@
-# React + Vite
+# Название проекта
+Web_app_site
+Сайт для поиска недвижимости в целях pet-проекта. 
+Расположен по адресу 155.212.147.208. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание
+Данный сайт позволяет искать недвижимость (новостройки, аренда, вторичка). 
+Переходить по ссылке квартиры и просмотреть основные характеристики.
+Также на странице с описанием конкретной квартиры (по id) используется форма для заполнения данных пользователя с сохранением в БД.
 
-Currently, two official plugins are available:
+## Технологии
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*   Frontend: React
+*   Backend: FASTAPI
+*   Database: PostgreSQL
+*   Docker
+*   Docker Compose
 
-## React Compiler
+## Установка и запуск
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Предварительные требования
 
-## Expanding the ESLint configuration
+*   Установленный Docker и Docker Compose ([Инструкция по установке](https://docs.docker.com/get-docker/))
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# Web_app_site
+### Развертывание с помощью Docker Compose
+
+1.  **Клонируйте репозиторий:**
+    git clone https://github.com/OlegLazukov/Web_app_site.git
+
+2.  **Настройте переменные окружения:**
+
+    Создайте файл `.env` в корневой директории проекта и добавьте необходимые переменные.
+    Данные по БД и т.д.
+3. **Запустите проект с помощью Docker Compose:**
+
+    ```bash
+    docker-compose up --build
+    ```
+
+    Эта команда соберет необходимые образы и запустит контейнеры.  Ключ `--build` нужен для пересборки образов при изменении Dockerfile.
+
+4. **Дождитесь запуска контейнеров:**
+
+    После запуска `docker-compose up` вы увидите логи контейнеров в терминале. Дождитесь, пока все сервисы (backend, frontend, database) запустятся без ошибок.
+
+### Создание и импорт базы данных
+
+1.  **Создание базы данных:**
+
+    Подключитесь к серверу PostgreSQL с правами администратора (например, используя пользователя `postgres`):
+
+    ```bash
+    sudo -u postgres psql
+    ```
+
+    Создайте базу данных:
+
+    ```sql
+    CREATE DATABASE your_database_name;
+    ```
+
+    Создайте пользователя и предоставьте ему права на базу данных:
+
+    ```sql
+    CREATE USER your_user_name WITH PASSWORD 'your_password';
+    GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_user_name;
+    ```
+
+    Замените `your_database_name`, `your_user_name` и `your_password` на свои значения.
+
+2.  **Импорт дампа базы данных:**
+
+    Импортируйте дамп `dump.sql` в созданную базу данных:
+
+    ```bash
+    psql -U your_user_name -d your_database_name -f /path/to/dump.sql
+    ```
+
+    Замените:
+
+    *   `your_user_name` — имя пользователя PostgreSQL, у которого есть права на созданную базу данных.
+    *   `your_database_name` — имя созданной базы данных.
+    *   `/path/to/dump.sql` — путь к файлу `dump.sql`.
+
+    Например:
+
+    ```bash
+    psql -U myuser -d mydatabase -f /home/user/backup/dump.sql
+    ```
+
+**Важно:**
+
+*   Убедитесь, что у пользователя, под которым вы выполняете команды, есть необходимые права для создания базы данных и импорта дампа.
+*   Файл `dump.sql` должен быть доступен для чтения пользователю PostgreSQL.
+*   Если при импорте возникают ошибки, проверьте совместимость дампа с версией PostgreSQL и целостность данных в дампе.

@@ -77,14 +77,6 @@ const SecMarketTitle = styled.h1`
   text-align: center;
   color: #696969;
   text-shadow: 3px 3px 3px white;
-  @media (max-width: ${breakpoints.md}) {
-    font-size: 28px;
-  }
-
-  @media (max-width: ${breakpoints.sm}) {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
 
 `;
 
@@ -96,7 +88,6 @@ const ErrorMessage = styled.div`
 `;
 
 const JsonDisplay = styled.pre`
-  /* Ваши стили для JsonDisplay */
 `;
 
 function SecMarket() {
@@ -112,7 +103,6 @@ function SecMarket() {
       setLoading(true);
       setError(null);
       try {
-        console.log('SecMarket.jsx: Запрос к /find_flats/secondary_markets');
         const response = await axios.get(
           '/api/find_flats/secondary_markets',
           {
@@ -120,21 +110,14 @@ function SecMarket() {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://155.212.147.208:8000',
             },
             validateStatus: (status) =>
               (status >= 200 && status < 300) || status === 304,
             timeout: 5000,
           }
         );
-        console.log(
-          'SecMarket.jsx: Ответ сервера:',
-          response.status,
-          response.data
-        );
         setSecMarket(response.data);
       } catch (e) {
-        console.error('SecMarket.jsx: Ошибка при получении данных:', e);
         setError(
           'Ошибка при загрузке данных о вторичном рынке. Пожалуйста, попробуйте позже.'
         );
@@ -148,15 +131,13 @@ function SecMarket() {
   }, []);
 
   const handleSearch = (value) => {
-    console.log('handleSearch вызвана', value);
     setSearchTerm(value);
-    let results = []; // Инициализируем results здесь
+    let results = [];
     if (value) {
       results = secMarket.filter((item) => {
         let streetMatch = true;
         let roomCountMatch = true;
 
-        //  Проверка соответствия по улице
         if (value) {
           if (item.location && typeof item.location === 'string') {
             const locationParts = item.location.split(',');
@@ -170,7 +151,6 @@ function SecMarket() {
           }
         }
 
-        //  Проверка соответствия по количеству комнат
         if (roomCount) {
           roomCountMatch = String(item.room_count) === roomCount;
         }
@@ -234,7 +214,7 @@ function SecMarket() {
               <CardFlat
                 key={i}
                 flat={secMarket}
-                url_flat="find_flats/secondary_markets"
+                url_flat="api/find_flats/secondary_markets"
               />
             ))}
           </Row>

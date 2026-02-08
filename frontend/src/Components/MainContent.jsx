@@ -6,13 +6,6 @@ import CardFlat from './CardFlat.jsx';
 const { Search } = Input;
 const { Link } = Typography;
 
-const breakpoints = {
-  sm: '576px',
-  md: '768px',
-  lg: '992px',
-  xl: '1200px',
-  xxl: '1600px',
-};
 
 const MainContentWrapper = styled.div`
   margin: 0px;
@@ -31,14 +24,6 @@ const MainContentTitle = styled.h1`
   text-align: center;
   color: #696969;
   text-shadow: 3px 3px 3px white;
-  @media (max-width: ${breakpoints.md}) {
-    font-size: 28px;
-  }
-
-  @media (max-width: ${breakpoints.sm}) {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
 `;
 
 const WrapperSearch = styled.div`
@@ -48,21 +33,6 @@ const WrapperSearch = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-
-  @media (max-width: ${breakpoints.md}) {
-    padding-right: 0;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  & > .ant-input-group-wrapper {
-    width: 90%;
-    margin-bottom: 10px;
-  }
-  & > .ant-select {
-    width: 90% !important;
-    margin-right: 0 !important;
-  }
 `;
 
 const NoResults = styled.div`
@@ -98,14 +68,12 @@ export default function MainContent({ flats, loading, error }) {
   const [roomCount, setRoomCount] = useState('');
 
   const handleSearch = (value) => {
-    console.log('handleSearch вызвана', value);
     setSearchTerm(value);
 
     let results = flats.filter((item) => {
       let streetMatch = true;
       let roomCountMatch = true;
 
-      //  Проверка соответствия по улице
       if (value) {
         if (item.location && typeof item.location === 'string') {
           const locationParts = item.location.split(',');
@@ -119,7 +87,6 @@ export default function MainContent({ flats, loading, error }) {
         }
       }
 
-      //  Проверка соответствия по количеству комнат
       if (roomCount) {
         roomCountMatch = String(item.room_count) === roomCount;
       }
@@ -168,7 +135,7 @@ export default function MainContent({ flats, loading, error }) {
         ) : (
           <Row gutter={16}>
             {itemsToDisplay.map((flat, i) => (
-              <CardFlat key={i} flat={flat} url_flat="find_flats" />
+              <CardFlat key={i} flat={flat} url_flat="api/find_flats" />
             ))}
           </Row>
         )}
