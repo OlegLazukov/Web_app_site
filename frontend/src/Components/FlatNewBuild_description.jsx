@@ -79,7 +79,7 @@ function FlatNewBuild() {
           setError(
             'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
           );
-          setFlatNewBuild(null); // Сброс данных о квартире при ошибке
+          setFlatNewBuild(null);
         } finally {
           setLoading(false);
         }
@@ -90,7 +90,6 @@ function FlatNewBuild() {
 
   useEffect(() => {
   if (flatNewBuild) {
-    console.log('flat:', flatNewBuild, 'property_type:', typeof flatNewBuild.property_type, 'room_count:', typeof flatNewBuild.room_count);
     const room_count = propertyTypeRoomCount[flatNewBuild.room_count];
     const property_type = flatNewBuild.property_type
     if (
@@ -108,7 +107,7 @@ function FlatNewBuild() {
         setImageUrls([]);
       })
       .finally(() => {
-          setLoading(false);  //  Устанавливаем loading в false после запроса
+          setLoading(false);
           });
     } else {
       console.warn("Некорректные property_type или room_count", property_type, room_count);

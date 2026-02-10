@@ -60,7 +60,6 @@ function Flat() {
     const fetchFlat = async () => {
       try {
           setLoading(true);
-          console.log(`Flat.jsx: Запрос к /find_flats/${uuid}`);
           const response = await axios.get(
               `/api/find_flats/${uuid}`,
               {
@@ -80,13 +79,12 @@ function Flat() {
           response.data
           );
           setFlat(response.data);
-          setError(null); // Сброс ошибки при успешной загрузке
+          setError(null);
         } catch (e) {
-          console.error('Flat.jsx: Ошибка при получении данных:', e);
           setError(
             'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
           );
-          setFlat(null); // Сброс данных о квартире при ошибке
+          setFlat(null);
         } finally {
           setLoading(false);
         }
@@ -105,7 +103,7 @@ function Flat() {
           property_type.length > 0 &&
           (typeof room_count === "number" || !isNaN(Number(room_count)))
       ) {
-          setLoading(true);  //  Устанавливаем loading в true перед запросом
+          setLoading(true);
           axios.get(
               `/api/data/images?property_type=${encodeURIComponent(property_type)}&room_count=${Number(room_count)}`
           ).then(resp => {
@@ -114,16 +112,13 @@ function Flat() {
                   console.warn("Ошибка при получении изображений:", err);
                   setImageUrls([]);
                   }).finally(() => {
-                      setLoading(false);  //  Устанавливаем loading в false после запроса
+                      setLoading(false);
                       });
                   } else {
                       console.warn("Некорректные property_type или room_count", property_type, room_count);
                       }
                   }
               }, [flat]);
-
-
-
 
   if (loading) {
     return (

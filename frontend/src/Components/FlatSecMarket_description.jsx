@@ -76,7 +76,6 @@ function FlatSecMarket() {
         setFlatSecMarket(response.data);
         setError(null);
       } catch (e) {
-        console.error('FlatSecMarket.jsx: Ошибка при получении данных:', e);
         setError(
           'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
         );
@@ -91,7 +90,6 @@ function FlatSecMarket() {
 
   useEffect(() => {
   if (flatSecMarket) {
-    console.log('flat:', flatSecMarket, 'property_type:', typeof flatSecMarket.property_type, 'room_count:', typeof flatSecMarket.room_count);
     const room_count = propertyTypeRoomCount[flatSecMarket.room_count];
     const property_type = flatSecMarket.property_type
     if (
