@@ -21,16 +21,16 @@ const StyledCard = styled(Card)`
 
 const MainLink = styled(RouterLink)`
   font-size: 30px;
-  color: inherit; /* Чтобы не было синих ссылок, если stylization antd не применяется */
-  text-decoration: none; /* Убираем подчеркивание, если нужно */
+  color: inherit;
+  text-decoration: none;
   &:hover {
-    text-decoration: underline; /* Добавляем подчеркивание при наведении, если нужно */
+    text-decoration: underline;
   }
 `;
 
 const CardFlat = ({ flat, url_flat }) => (
 
-  <Col xs={24} sm={12} md={8} lg={6} xl={6}>
+  <Col span={12}>
       <StyledCard>
         <Card title={
           <MainLink

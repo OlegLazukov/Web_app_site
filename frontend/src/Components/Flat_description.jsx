@@ -12,13 +12,6 @@ const FlatWrapper = styled.div`
   border-radius: 5px;
 `;
 
-const breakpoints = {
-  sm: '576px',
-  md: '768px',
-  lg: '992px',
-  xl: '1200px',
-  xxl: '1600px',
-};
 
 const propertyTypeRoomCount = {
   'Однокомнатная': 1,
@@ -45,14 +38,6 @@ const FlatTitle = styled.h1`
   font-size: 36px;
   padding: 50px;
   font-style: italic;
-  @media (max-width: ${breakpoints.md}) {
-    font-size: 28px;
-  }
-
-  @media (max-width: ${breakpoints.sm}) {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
 
 `;
 

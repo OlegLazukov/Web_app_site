@@ -15,11 +15,6 @@ const HeaderContainer = styled.header`
   padding: 20px;
   border-radius: 10px;
   flex-wrap: wrap;
-
-  @media (max-width: 768px) {
-    justify-content: space-between;
-    padding: 10px;
-  }
 `;
 
 const Nav = styled.nav`
@@ -50,10 +45,6 @@ const NavButton = styled.button`
   color: #333;
   cursor: pointer;
   &:hover { color: #007bff; }
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-    padding: 5px;
-  }
 `;
 
 export default function Header({ onFilter }) {

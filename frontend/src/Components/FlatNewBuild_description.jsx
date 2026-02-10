@@ -12,14 +12,6 @@ const FlatNewBuildWrapper = styled.div`
   border-radius: 5px;
 `;
 
-const breakpoints = {
-  sm: '576px',
-  md: '768px',
-  lg: '992px',
-  xl: '1200px',
-  xxl: '1600px',
-};
-
 const propertyTypeRoomCount = {
   'Однокомнатная': 1,
   'Двухкомнатная': 2,
@@ -45,14 +37,6 @@ const FlatNewBuildTitle = styled.h1`
   font-size: 36px;
   padding: 50px;
   font-style: italic;
-  @media (max-width: ${breakpoints.md}) {
-    font-size: 28px;
-  }
-
-  @media (max-width: ${breakpoints.sm}) {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
 
 `;
 
@@ -76,7 +60,6 @@ function FlatNewBuild() {
     const fetchNewBuild = async () => {
       try {
           setLoading(true);
-          console.log(`Flat.jsx: Запрос к /find_flats/news_buildings/${uuid}`);
           const response = await axios.get(
             `/api/find_flats/news_buildings/${uuid}`,
             {
@@ -90,15 +73,9 @@ function FlatNewBuild() {
               timeout: 5000,
             }
           );
-          console.log(
-            'FlatNewBuild.jsx: Ответ сервера:',
-            response.status,
-            response.data
-          );
           setFlatNewBuild(response.data);
-          setError(null); // Сброс ошибки при успешной загрузке
+          setError(null);
         } catch (e) {
-          console.error('FlatNewBuild.jsx: Ошибка при получении данных:', e);
           setError(
             'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
           );

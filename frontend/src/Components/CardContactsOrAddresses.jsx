@@ -20,7 +20,7 @@ const Title = styled.div`
 `;
 
 const CardContactsOrAddresses = ({ info, mainTitle }) => (
-  <Col xs={24} sm={12} md={8} lg={6}>
+  <Col span={12}>
     <StyledCard title={<Title>{mainTitle}</Title>}>
       <FlatInfo>{info}</FlatInfo>
     </StyledCard>

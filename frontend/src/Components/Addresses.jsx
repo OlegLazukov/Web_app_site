@@ -12,11 +12,6 @@ const AddressesWrapper = styled.div`
     background-image: url('/images/back_photo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center top;
-    min-height: 400px;
-    @media (max-width: 768px) {
-        background-position: center center;
-        }
 `;
 
 
@@ -66,15 +61,9 @@ function Addresses() {
             (status >= 200 && status < 300) || status === 304,
           timeout: 5000,
         });
-        console.log(
-          'Addresses.jsx: Ответ сервера:',
-          response.status,
-          response.data
-        );
 
         setAddresses(response.data);
       } catch (error) {
-        console.error('Addresses.jsx: Ошибка при получении адресов:', error);
         setAddresses(['Ошибка загрузки контактов']);
       }
     };

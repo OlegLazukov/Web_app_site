@@ -12,11 +12,6 @@ const FooterContainer = styled.footer`
   bottom: 0;
   left: 0;
   width: 100%;
-  @media (max-width: 768px) {
-    position: static;
-    font-size: 0.8rem;
-    padding: 10px;
-  }
 `;
 
 const FooterLink = styled.a`
@@ -26,10 +21,7 @@ const FooterLink = styled.a`
   &:hover {
     text-decoration: underline;
   }
-    @media (max-width: 768px) {
-    display: block;    /* Каждая ссылка на новой строке */
-    margin: 5px auto; /* Центрируем ссылки и добавляем отступы сверху и снизу */
-  }
+
 `;
 
 export default function Footer() {

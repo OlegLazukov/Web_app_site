@@ -12,14 +12,6 @@ const FlatRentWrapper = styled.div`
   border-radius: 5px;
 `;
 
-const breakpoints = {
-  sm: '576px',
-  md: '768px',
-  lg: '992px',
-  xl: '1200px',
-  xxl: '1600px',
-};
-
 
 const propertyTypeRoomCount = {
   'Однокомнатная': 1,
@@ -46,14 +38,6 @@ const FlatRentTitle = styled.h1`
     text-align: center;
     color: #696969;
     text-shadow: 3px 3px 3px white;
-    @media (max-width: ${breakpoints.md}) {
-        font-size: 28px;
-        }
-    @media (max-width: ${breakpoints.sm}) {
-        font-size: 24px;
-        margin-bottom: 10px;
-        }
-
 `;
 
 const FlatRentItem = styled.li`
@@ -78,7 +62,6 @@ function FlatRent() {
     const fetchRent = async () => {
       try {
           setLoading(true);
-          console.log(`FlatRent.jsx: Запрос к /find_flats/rents/${uuid}`);
           const response = await axios.get(
             `/api/find_flats/rents/${uuid}`,
             {
@@ -91,11 +74,6 @@ function FlatRent() {
                 (status >= 200 && status < 300) || status === 304,
               timeout: 5000,
             }
-          );
-          console.log(
-            'Flat.jsx: Ответ сервера:',
-            response.status,
-            response.data
           );
           setFlatRent(response.data);
           setError(null); // Сброс ошибки при успешной загрузке

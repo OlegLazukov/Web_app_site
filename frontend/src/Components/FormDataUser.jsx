@@ -5,12 +5,8 @@ import axios from 'axios';
 
 const Title = styled.h3`
     text-align: center;
-    font-size: 20px;
-    margin-bottom: 20px;
-    @media (min-width: 768px) {
-        font-size: 24px;
-        margin-bottom: 30px;
-        }
+    font-size: 24px;
+    margin-bottom: 30px;
 `;
 
 const StyledFormItem = styled(Form.Item)`
@@ -29,28 +25,6 @@ const StyledButton = styled(Button)`
   font-size: 18px;
 `;
 
-const StyledForm = styled(Form)`
-  max-width: 100%;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  @media (min-width: 576px) {
-    max-width: 540px;
-    margin: 0 auto;
-    padding: 30px;
-  }
-
-
-  .ant-form-item-label {
-    width: auto;
-    padding-right: 8px;
-  }
-
-  .ant-form-item-control {
-    flex: 1;
-  }
-`;
 
 
 const FormDataUser = () => {
@@ -72,22 +46,17 @@ const FormDataUser = () => {
                   'Cache-Control': 'no-cache',
                   'Expires': '0',
                   'Pragma': 'no-cache',
-//                   'Access-Control-Allow-Origin': 'http://0.0.0.0:8000',
                 },
               }
             );
-
-            console.log('Успешно:', response.data);
             message.success('Заявка успешно отправлена!');
             form.resetFields();
         } catch (error) {
-            console.error('Ошибка:', error);
             message.error('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте еще раз.');
         }
     };
 
     const onFinishFailed = (errorInfo) => {
-        console.log('Не удалось отправить:', errorInfo);
         message.error('Пожалуйста, заполните все обязательные поля.');
     };
 
@@ -95,8 +64,13 @@ const FormDataUser = () => {
         <Form
             form={form}
             name="wrap"
+            labelCol={{ flex: '110px' }}
             labelAlign="left"
+            labelWrap
+            wrapperCol={{ flex: 1 }}
+            layout="horizontal"
             colon={false}
+            style={{ maxWidth: 600 }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
         >

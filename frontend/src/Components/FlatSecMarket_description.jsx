@@ -12,13 +12,6 @@ const FlatSecMarketWrapper = styled.div`
   border-radius: 5px;
 `;
 
-const breakpoints = {
-  sm: '576px',
-  md: '768px',
-  lg: '992px',
-  xl: '1200px',
-  xxl: '1600px',
-};
 
 const propertyTypeRoomCount = {
   'Однокомнатная': 1,
@@ -45,14 +38,6 @@ const FlatSecMarketTitle = styled.h1`
     text-align: center;
     color: #696969;
     text-shadow: 3px 3px 3px white;
-    @media (max-width: ${breakpoints.md}) {
-        font-size: 28px;
-        }
-    @media (max-width: ${breakpoints.sm}) {
-        font-size: 24px;
-        margin-bottom: 10px;
-        }
-
 `;
 
 const FlatSecMarketItem = styled.li`
@@ -75,7 +60,6 @@ function FlatSecMarket() {
     const fetchSecMarket = async () => {
       try {
           setLoading(true);
-          console.log(`FlatSecMarket.jsx: Запрос к /find_flats/secondary_markets/${uuid}`);
           const response = await axios.get(
             `/api/find_flats/secondary_markets/${uuid}`,
           {
@@ -89,19 +73,14 @@ function FlatSecMarket() {
             timeout: 5000,
           }
         );
-        console.log(
-          'Flat.jsx: Ответ сервера:',
-          response.status,
-          response.data
-        );
         setFlatSecMarket(response.data);
-        setError(null); // Сброс ошибки при успешной загрузке
+        setError(null);
       } catch (e) {
         console.error('FlatSecMarket.jsx: Ошибка при получении данных:', e);
         setError(
           'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
         );
-        setFlatSecMarket(null); // Сброс данных о квартире при ошибке
+        setFlatSecMarket(null);
       } finally {
         setLoading(false);
       }
