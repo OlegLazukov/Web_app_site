@@ -214,7 +214,7 @@ function SecMarket() {
               <CardFlat
                 key={i}
                 flat={secMarket}
-                url_flat="api/find_flats/secondary_markets"
+                url_flat="find_flats/secondary_markets"
               />
             ))}
           </Row>

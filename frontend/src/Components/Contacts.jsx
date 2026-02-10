@@ -50,7 +50,6 @@ function Contacts() {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        console.log('Contacts.jsx: Запрос к /contacts');
         const response = await axios.get(
           '/api/contacts',
           {
@@ -58,7 +57,6 @@ function Contacts() {
               'Cache-Control': 'no-cache',
               'Expires': '0',
               'Pragma': 'no-cache',
-              'Access-Control-Allow-Origin': 'http://155.212.147.208:8000'
             },
             // считаем 304 «успешным»
             validateStatus: status =>
@@ -66,12 +64,9 @@ function Contacts() {
             timeout: 5000
           }
         );
-        console.log('Contacts.jsx: Ответ сервера:', response.status, response.data);
 
-        // response.data гарантированно массив (или пустой)
         setContacts(response.data);
       } catch (error) {
-        console.error('Contacts.jsx: Ошибка при получении контактов:', error);
         setContacts(['Ошибка загрузки контактов']);
       }
     };

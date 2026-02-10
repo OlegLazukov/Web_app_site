@@ -198,7 +198,7 @@ function NewBuildings() {
               <CardFlat
                 key={i}
                 flat={newBuildingsItem}
-                url_flat="api/find_flats/news_buildings"
+                url_flat="find_flats/news_buildings"
 
               />
             ))}

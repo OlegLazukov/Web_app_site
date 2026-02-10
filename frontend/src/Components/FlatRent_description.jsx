@@ -76,13 +76,12 @@ function FlatRent() {
             }
           );
           setFlatRent(response.data);
-          setError(null); // Сброс ошибки при успешной загрузке
+          setError(null);
         } catch (e) {
-          console.error('FlatRent.jsx: Ошибка при получении данных:', e);
           setError(
             'Ошибка при загрузке данных о квартире. Пожалуйста, попробуйте позже.'
           );
-          setFlatRent(null); // Сброс данных о квартире при ошибке
+          setFlatRent(null);
         } finally {
           setLoading(false);
           }
@@ -93,7 +92,6 @@ function FlatRent() {
 
   useEffect(() => {
   if (flatRent) {
-    console.log('flat:', flatRent, 'property_type:', typeof flatRent.property_type, 'room_count:', typeof flatRent.room_count);
     const room_count = propertyTypeRoomCount[flatRent.room_count];
     const property_type = flatRent.property_type
     if (
@@ -110,7 +108,7 @@ function FlatRent() {
       .catch(err => {
         setImageUrls([]);
       }).finally(() => {
-          setLoading(false);  //  Устанавливаем loading в false после запроса
+          setLoading(false);
           });
     } else {
       console.warn("Некорректные property_type или room_count", property_type, room_count);
