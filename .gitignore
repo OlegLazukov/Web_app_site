@@ -23,3 +23,4 @@ backend/app/Config.py
 *.njsproj
 *.sln
 *.sw
+udo systemctl status postgresql@<YOUR_VERSION>-main.service
